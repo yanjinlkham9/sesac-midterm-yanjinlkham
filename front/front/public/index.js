@@ -1,6 +1,13 @@
 /* 1. https://jsonplaceholder.typicode.com/todos 로부터 데이터를 불러와서 추가해주는 함수 getTodos() 선언 */
 // getTodos()는 추후에 HTML DOM 내용이 완전히 로드되었을 때 실행되어야 합니다.
-async function getTodos() {}
+// async function getTodos() {
+//   const todosList = document.querySelector(".todos");
+//   axios
+//   .get("https://jsonplaceholder.typicode.com/todos")
+//   .then((response) => {
+//     todosList
+//   });
+// }
 
 /* 
   2. 새로운 입력창의 Todo를 Todo 목록에 추가하고, 입력창을 초기화합니다.
@@ -8,7 +15,19 @@ async function getTodos() {}
   - 작성 버튼 클릭 시 addTodo() 함수가 실행됩니다.
   - 입력 창에서 Enter 키 입력시에도 addTodo() 함수가 실행됩니다.
 */
-function addTodo() {}
+function addTodo() {
+  const todosList = document.getElementById("todos");
+  const todoNew = document.getElementById("todo");
+  const newCheck = todoNew.value.trim();
+  if (newCheck !== " ") {
+    const li = document.createElement("li");
+    li.innerText = newCheck;
+    todosList.appendChild(li);
+    todoNew.value = " ";
+  } else {
+    alert("none");
+  }
+}
 
 /*  3. x 버튼을 클릭하면 클릭한 버튼을 갖는 Todo 항목이 삭제됩니다. */
 // 삭제 함수의 이름 및 모양 변경 가능

@@ -3,7 +3,25 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>본인 이름 작성</title>
+    <title>얀진람</title>
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+    <link rel="stylesheet" href="public/index.css" />
   </head>
-  <body></body>
+  <body>
+    <div class="header">Todo list</div>
+    <form id="addList">
+      <input type="text" name="todo" id="todo" />
+      <button onclick="addTodo()">작성</button>
+    </form>
+
+    <ul id="todos"></ul>
+    <!-- <div class="lists">
+      <li>delectus aut autem</li>
+      <li>quis ut nam facilis et officia qui</li>
+      <li>fugiat veniam minus</li>
+      <li>laboriosam mollitia et enim quasi adipisci quia provident illum</li>
+      <li>et porro tempora</li>
+    </div> -->
+    <script defer src="public/index.js"></script>
+  </body>
 </html>
