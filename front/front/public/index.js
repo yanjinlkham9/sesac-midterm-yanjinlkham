@@ -17,11 +17,11 @@ function addTodo() {
   const todosList = document.getElementById("todos");
   const todoNew = document.getElementById("todo");
   const newCheck = todoNew.value.trim();
-  if (newCheck !== " ") {
+  if (newCheck !== "") {
     const li = document.createElement("li");
     li.innerText = newCheck;
     todosList.appendChild(li);
-    todoNew.value = " ";
+    todoNew.value = "";
   } else {
     alert("none");
   }
