@@ -15,7 +15,11 @@ exports.readAll = async (req, res) => {
 exports.readOne = async (req, res) => {
   try {
     const todo = await Todo.findOne({ where: { id: req.params.id } });
-    res.send(todo);
+    if (todo) {
+      res.send(todo);
+    } else {
+      res.status(500).send({ message: "Todo not found" });
+    }
   } catch (err) {
     console.log("err", err);
     res.status(500).send({ message: "Todo not found" });
@@ -40,9 +44,7 @@ exports.create = async (req, res) => {
 /* 기존 Todo 수정 */
 exports.update = async (req, res) => {
   try {
-    console.log("req.body::", req.body);
-    console.log("req.params::", req.params);
-    const updatedTodo = await Todo.update(
+    const [updatedTodo] = await Todo.update(
       {
         done: req.body.done,
       },
@@ -52,9 +54,19 @@ exports.update = async (req, res) => {
         },
       }
     );
-
-    console.log("updated params: ", updatedTodo.title);
-    res.send(updatedTodo);
+    const todo = await Todo.findOne({
+      where: { id: req.params.id },
+    });
+    if (updatedTodo > 0) {
+      res.send({
+        todo,
+      });
+    } else {
+      res.send({
+        message: "Todo not found",
+      });
+    }
+    // res.send(updatedTodo);
   } catch (err) {
     console.log("err", err);
     res.status(500).send({ message: "Todo not found" });
